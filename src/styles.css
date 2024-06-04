@@ -2,6 +2,7 @@ body {
     height: 100%;
     width: 100%;
     margin: 0;
+    padding: 0;
 }
 
 #container {
@@ -9,14 +10,43 @@ body {
     height: 100vh;
     width: 100%;
     /* border: 1px solid #f5f5f5; */
-    background: url('../images/bgw.jpg') no-repeat center center;
-    background-size: cover;
+    background: url('../images/bgw.jpg') no-repeat center top;
+    /* background-size: 150vh; */
+    background-size: 100%; 
     overflow: hidden;
-    margin: auto;
+
+    /* margin-bottom: 30px; */
+    flex: 1;
+    padding: 0;
+    margin: 0;
 }
 
 #container h1 {
     color: white;
     text-align: center;
     margin-top: 20px;
+}
+/* 
+#ground {
+    position: auto;
+    height: 100vh;
+    width: 100%;
+    background: url('../images/ground.png') no-repeat center bottom;
+    background-size: 80%;
+    margin: 0;
+    padding: 0;
+
+} */
+
+#bird {
+    image-rendering: optimizeSpeed;
+    position: relative;
+    top: 80px;
+    left: 300px;
+
+}
+
+.button {
+    position: relative center;
+    size-adjust: 100%;
 }
