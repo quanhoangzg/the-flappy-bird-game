@@ -1,3 +1,9 @@
+@font-face {
+    font-family: flappybird;
+    src: url(../fonts/FlappyBirdy.ttf);
+    font-weight: bold;
+  }
+
 body {
     height: 100%;
     width: 100%;
@@ -21,8 +27,14 @@ body {
     margin: 0;
 }
 
+h1 {
+    font-family: flappybird;
+    font-size: 200px;
+    
+}
+
 #container h1 {
-    color: white;
+    color: rgb(0, 0, 0);
     text-align: center;
     margin-top: 20px;
 }
@@ -41,12 +53,16 @@ body {
 #bird {
     image-rendering: optimizeSpeed;
     position: relative;
-    top: 80px;
+    top: -200px;
     left: 300px;
 
 }
 
 .button {
-    position: relative center;
-    size-adjust: 100%;
+    image-rendering: optimizeQuality;
+    position: relative;
+    top: 200px;
+    left: 500px;
+
 }
+
