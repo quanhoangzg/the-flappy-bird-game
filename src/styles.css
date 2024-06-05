@@ -37,6 +37,7 @@ h1 {
     color: rgb(0, 0, 0);
     text-align: center;
     margin-top: 20px;
+
 }
 
 #bird {
@@ -64,12 +65,12 @@ h1 {
     border: 2px solid #000;
 }
 
-#pole1 {
+#pole_1 {
     top: 0;
     border-top: none;
 }
 
-#pole2 {
+#pole_2 {
     bottom: 0; 
     border-bottom: none;
 }
