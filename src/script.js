@@ -5,7 +5,7 @@ $(function(){
     var pole_1 = $('#pole_1');
     var pole_2 = $('#pole_2');
     var score = $('#score')
-    var container_width = parseInt(container.width);
+    var container_width = parseInt(container.width());
     var container_height = parseInt(container.height());
     var pole_initial_position = parseInt(pole.css('right'));
     var pole_intital_height = parseInt(pole.css('height'));
@@ -19,7 +19,7 @@ $(function(){
     function playGame() {
         var_the_game = setInterval(function() {
             if (collision(bird, pole_1) || collision(bird, pole_2) || 
-                parseInt(bird.css('top')) <= 0 || parseInt(bird.css(top)) > container_height - bird_height) {
+                parseInt(bird.css('top')) <= 0 || parseInt(bird.css('top')) > container_height - bird_height) {
                     stop_the_game();
             }
             else {
@@ -52,7 +52,7 @@ $(function(){
         go_up = false;
     })
 
-    $('#container').mousedowm(function(e) {
+    $('#container').mousedown(function(e) {
         go_up = setInterval(up, 40);
     })
 
@@ -66,7 +66,7 @@ $(function(){
         bird.css('transform', 'rotate(50deg)');
     }
 
-    function go_up() {
+    function up() {
         bird.css('top', parseInt(bird.css('top')) - 20);
         bird.css('transform', 'rotate(-10deg)');
     }
