@@ -38,17 +38,6 @@ h1 {
     text-align: center;
     margin-top: 20px;
 }
-/* 
-#ground {
-    position: auto;
-    height: 100vh;
-    width: 100%;
-    background: url('../images/ground.png') no-repeat center bottom;
-    background-size: 80%;
-    margin: 0;
-    padding: 0;
-
-} */
 
 #bird {
     image-rendering: optimizeSpeed;
@@ -66,3 +55,21 @@ h1 {
 
 }
 
+.pole {
+    position: absolute;
+    height: 170px;
+    width: 60px;
+    background-color: #33cc33;
+    right: -64px;
+    border: 2px solid #000;
+}
+
+#pole1 {
+    top: 0;
+    border-top: none;
+}
+
+#pole2 {
+    bottom: 0; 
+    border-bottom: none;
+}
