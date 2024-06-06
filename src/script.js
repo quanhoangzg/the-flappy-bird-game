@@ -15,7 +15,7 @@ let birdImg;
 let groundWidth = 360;
 let groundHeight = 63;
 let groundX = 0;
-let groundY = 580;
+let groundY = 577;
 let groundImg;
 
 let ground = {
@@ -23,6 +23,27 @@ let ground = {
     y : groundY,
     width : groundWidth,
     height : groundHeight
+}
+
+// flappy bird text
+let flappyTextWidth = 987 / 4;
+let flappyTextHeight = 259 / 4;
+let flappyTextX = boardWidth / 2 - flappyTextWidth / 2 ;
+let flappyTextY = boardHeight / 4;
+let flappyTextImg;
+
+//start button 
+let startButtonWidth = 407;
+let startButtonHeight = 150;
+let startButtonX = boardWidth / 2 - startButtonWidth / 8;
+let startButtonY = boardHeight - (boardHeight / 3);
+let startButtonImg;
+
+let startButton = {
+    x : startButtonX,
+    y : startButtonY,
+    width : startButtonWidth / 4,
+    height : startButtonHeight / 4
 }
 
 let bird = {
@@ -47,6 +68,7 @@ let velocityX = -2; //pipes moving left speed
 let velocityY = 0; //bird jump speed
 let gravity = 0.4;
 
+let gameStart = false;
 let gameOver = false;
 let score = 0;
 
@@ -56,9 +78,12 @@ window.onload = function() {
     board.width = boardWidth;
     context = board.getContext("2d"); //used for drawing on the board
 
-    //draw flappy bird
-    // context.fillStyle = "green";
-    // context.fillRect(bird.x, bird.y, bird.width, bird.height);
+    //flappy bird text
+    flappyTextImg = new Image();
+    flappyTextImg.src = "./images/Flappy-Bird-Transparent.png";
+    flappyTextImg.onload = function() {
+        context.drawImage(flappyTextImg, flappyTextX, flappyTextY, flappyTextWidth, flappyTextHeight);
+    }
 
     //load images
     birdImg = new Image();
@@ -80,20 +105,70 @@ window.onload = function() {
         context.drawImage(groundImg, ground.x, ground.y, ground.width, ground.height);
     }
 
-    requestAnimationFrame(update);
-    setInterval(placePipes, 1500); //every 1.5 seconds
-    document.addEventListener("keydown", moveBird);
+    //start button
+    startButtonImg = new Image();
+    startButtonImg.src = "./images/startButton.png"
+    startButtonImg.onload = function() {
+        context.drawImage(startButtonImg, startButton.x, startButton.y, startButton.width, startButton.height);
+    }
+    
+    // Sounds
+    backgroundMusic = new Audio("./music/theme.m4a");
+    flapSound = new Audio("./music/flap.mp3");
+    hitSound = new Audio("./music/hitdie.mp3");
+    pointSound = new Audio("./music/point.mp3");
+    clickSound = new Audio("./music/clicksound.mp3");
+
+    board.addEventListener("click", function(event) {
+        var rect = board.getBoundingClientRect();
+        var x = event.clientX - rect.left;
+        var y = event.clientY - rect.top;
+
+        if (x >= startButton.x && x <= startButton.x + startButton.width &&
+            y >= startButton.y && y <= startButton.y + startButton.height) {
+            gameStart = true;
+            clickSound.play();
+            startGame();
+        }
+    });
+
+    document.addEventListener("keydown", function(event) {
+        if (!gameStart && (event.code === 'Space' || 
+            event.code === 'ArrowUp' || event.code === 'ArrowDown' 
+            || event.code === 'ArrowLeft' || event.code === 'ArrowRight')) {
+            gameStart = true;
+            clickSound.play()
+            startGame();
+        }
+    });
+
+}
+
+function startGame() {
+    if (gameStart) {
+        requestAnimationFrame(update);
+        setInterval(placePipes, 1500); //every 1.5 seconds
+        document.addEventListener("keydown", moveBird);
+        backgroundMusic.loop = true;
+        backgroundMusic.play();
+    }
 }
 
 function update() {
     requestAnimationFrame(update);
     if (gameOver) {
+        backgroundMusic.pause();
+        hitSound.play();
+        setTimeout(function() {
+            hitSound.pause();
+        }, 500);
         return;
     }
     context.clearRect(0, 0, board.width, board.height);
-
+    
     //bird
     velocityY += gravity;
+
     // bird.y += velocityY;
     bird.y = Math.max(bird.y + velocityY, 0); //apply gravity to current bird.y, limit the bird.y to top of the canvas
     context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
@@ -110,6 +185,7 @@ function update() {
 
         if (!pipe.passed && bird.x > pipe.x + pipe.width) {
             score += 0.5; //0.5 because there are 2 pipes! so 0.5*2 = 1, 1 for each set of pipes
+            pointSound.play();
             pipe.passed = true;
         }
 
@@ -132,6 +208,7 @@ function update() {
     context.drawImage(groundImg, ground.x, ground.y, ground.width, ground.height);
     if (detectCollision(bird, ground)) {
         gameOver = true;
+
     }
 
     if (gameOver) {
@@ -175,6 +252,7 @@ function moveBird(e) {
     if (e.code == "Space" || e.code == "ArrowUp" || e.code == "KeyX") {
         //jump
         velocityY = -6;
+        flapSound.play();
 
         //reset game
         if (gameOver) {
