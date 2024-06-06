@@ -11,6 +11,20 @@ let birdX = boardWidth/8;
 let birdY = boardHeight/2;
 let birdImg;
 
+//ground
+let groundWidth = 360;
+let groundHeight = 63;
+let groundX = 0;
+let groundY = 580;
+let groundImg;
+
+let ground = {
+    x : groundX,
+    y : groundY,
+    width : groundWidth,
+    height : groundHeight
+}
+
 let bird = {
     x : birdX,
     y : birdY,
@@ -59,6 +73,13 @@ window.onload = function() {
     bottomPipeImg = new Image();
     bottomPipeImg.src = "./images/bottompipe.png";
 
+    //ground image
+    groundImg = new Image();
+    groundImg.src = "./images/ground.png";
+    groundImg.onload = function() {
+        context.drawImage(groundImg, ground.x, ground.y, ground.width, ground.height);
+    }
+
     requestAnimationFrame(update);
     setInterval(placePipes, 1500); //every 1.5 seconds
     document.addEventListener("keydown", moveBird);
@@ -106,6 +127,12 @@ function update() {
     context.fillStyle = "white";
     context.font="45px sans-serif";
     context.fillText(score, 5, 45);
+
+    //ground 
+    context.drawImage(groundImg, ground.x, ground.y, ground.width, ground.height);
+    if (detectCollision(bird, ground)) {
+        gameOver = true;
+    }
 
     if (gameOver) {
         context.fillText("GAME OVER", 5, 90);
