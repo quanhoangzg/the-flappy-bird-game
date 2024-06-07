@@ -3,7 +3,8 @@
 ## CS50
 >This is my final project for the CS50 Introduction to Computer Sciense course.
 > CSS, HTML, JavaScript
-
+## Link to my project
+[Flappy Bird](https://quanhoangzg.github.io/the-flappy-bird-game.io/)
 ## Features
 - CSS
 - HTML
