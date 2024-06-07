@@ -1,6 +1,6 @@
 @font-face {
     font-family: flappybird;
-    src: url(../fonts/flappy-font.ttf);
+    src: url(./fonts/flappy-font.ttf);
     font-weight: bold;
   }
 
@@ -11,5 +11,5 @@
 
 #board {
     /* background-color: skyblue; */
-    background-image: url('../images/flappybirdbg.png');
+    background-image: url('./images/flappybirdbg.png');
 }
