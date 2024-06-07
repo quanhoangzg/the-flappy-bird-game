@@ -20,6 +20,7 @@ It has 3 stages:
 
 ### I need to have variables for the game like velocity, speed, rectangles for checking collision.
 ```javascript
+```javascript
 //board
 let board;
 let boardWidth = 360;
