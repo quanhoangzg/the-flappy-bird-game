@@ -32,6 +32,13 @@ let flappyTextX = boardWidth / 2 - flappyTextWidth / 2 ;
 let flappyTextY = boardHeight / 4;
 let flappyTextImg;
 
+// flappy bird text
+let gameOverWidth = 1238 / 4;
+let gameOverHeight = 340 / 4;
+let gameOverX = boardWidth / 2 - flappyTextWidth / 2 ;
+let gameOverY = boardHeight / 4;
+let gameOverImg;
+
 //start button 
 let startButtonWidth = 407;
 let startButtonHeight = 150;
@@ -45,6 +52,7 @@ let startButton = {
     width : startButtonWidth / 4,
     height : startButtonHeight / 4
 }
+
 
 let bird = {
     x : birdX,
@@ -71,6 +79,7 @@ let gravity = 0.4;
 let gameStart = false;
 let gameOver = false;
 let score = 0;
+let bestScore = 0;
 
 window.onload = function() {
     board = document.getElementById("board");
@@ -84,6 +93,8 @@ window.onload = function() {
     flappyTextImg.onload = function() {
         context.drawImage(flappyTextImg, flappyTextX, flappyTextY, flappyTextWidth, flappyTextHeight);
     }
+
+
 
     //load images
     birdImg = new Image();
@@ -201,19 +212,35 @@ function update() {
 
     //score
     context.fillStyle = "white";
-    context.font="45px sans-serif";
+    context.font="45px flappybird";
     context.fillText(score, 5, 45);
+    context.strokeStyle = "black";
+    context.strokeText(score, 5, 45);
 
     //ground 
     context.drawImage(groundImg, ground.x, ground.y, ground.width, ground.height);
     if (detectCollision(bird, ground)) {
         gameOver = true;
-
     }
 
     if (gameOver) {
-        context.fillText("GAME OVER", 5, 90);
+        bestScore = Math.max(bestScore, score);
+        context.fillText("BEST SCORE: " + bestScore, 30, boardHeight/2);
+        context.strokeText("BEST SCORE: " + bestScore, 30, boardHeight/2);
+        context.fillText("SCORE: " + score, 30, boardHeight/2 + 80);
+        context.strokeText("SCORE: " + score, 30, boardHeight/2 + 80);
+        //gameOver text
+        gameOverImg = new Image();
+        flappyTextImg.src = "./images/gameOver.png";
+        gameOverImg.onload = function() {
+            context.drawImage(gameOverImg, gameOverX, gameOverY, gameOverWidth, gameOverHeight);
+        };
+
+
+        
     }
+
+
 }
 
 function placePipes() {
