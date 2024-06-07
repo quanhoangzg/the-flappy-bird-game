@@ -19,7 +19,7 @@ It has 3 stages:
 - The GameOver GUI when you hit obstacles and die.
 
 ### I need to have variables for the game like velocity, speed, rectangles for checking collision.
-'''javascript
+```javascript
 //board
 let board;
 let boardWidth = 360;
@@ -102,4 +102,4 @@ let gameStart = false;
 let gameOver = false;
 let score = 0;
 let bestScore = 0;
-'''
+```
