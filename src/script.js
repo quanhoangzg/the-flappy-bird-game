@@ -89,7 +89,7 @@ window.onload = function() {
 
     //flappy bird text
     flappyTextImg = new Image();
-    flappyTextImg.src = "./images/Flappy-Bird-Transparent.png";
+    flappyTextImg.src = "images/Flappy-Bird-Transparent.png";
     flappyTextImg.onload = function() {
         context.drawImage(flappyTextImg, flappyTextX, flappyTextY, flappyTextWidth, flappyTextHeight);
     }
@@ -98,37 +98,37 @@ window.onload = function() {
 
     //load images
     birdImg = new Image();
-    birdImg.src = "./images/flappybird.png";
+    birdImg.src = "images/flappybird.png";
     birdImg.onload = function() {
         context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
     }
 
     topPipeImg = new Image();
-    topPipeImg.src = "./images/toppipe.png";
+    topPipeImg.src = "images/toppipe.png";
 
     bottomPipeImg = new Image();
-    bottomPipeImg.src = "./images/bottompipe.png";
+    bottomPipeImg.src = "images/bottompipe.png";
 
     //ground image
     groundImg = new Image();
-    groundImg.src = "./images/ground.png";
+    groundImg.src = "images/ground.png";
     groundImg.onload = function() {
         context.drawImage(groundImg, ground.x, ground.y, ground.width, ground.height);
     }
 
     //start button
     startButtonImg = new Image();
-    startButtonImg.src = "./images/startButton.png"
+    startButtonImg.src = "images/startButton.png"
     startButtonImg.onload = function() {
         context.drawImage(startButtonImg, startButton.x, startButton.y, startButton.width, startButton.height);
     }
     
     // Sounds
-    backgroundMusic = new Audio("./music/theme.m4a");
-    flapSound = new Audio("./music/flap.mp3");
-    hitSound = new Audio("./music/hitdie.mp3");
-    pointSound = new Audio("./music/point.mp3");
-    clickSound = new Audio("./music/clicksound.mp3");
+    backgroundMusic = new Audio("music/theme.m4a");
+    flapSound = new Audio("music/flap.mp3");
+    hitSound = new Audio("music/hitdie.mp3");
+    pointSound = new Audio("music/point.mp3");
+    clickSound = new Audio("music/clicksound.mp3");
 
     board.addEventListener("click", function(event) {
         var rect = board.getBoundingClientRect();
@@ -231,7 +231,7 @@ function update() {
         context.strokeText("SCORE: " + score, 30, boardHeight/2 + 80);
         //gameOver text
         gameOverImg = new Image();
-        flappyTextImg.src = "./images/gameOver.png";
+        flappyTextImg.src = "images/gameOver.png";
         gameOverImg.onload = function() {
             context.drawImage(gameOverImg, gameOverX, gameOverY, gameOverWidth, gameOverHeight);
         };
