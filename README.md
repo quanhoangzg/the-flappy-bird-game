@@ -5,6 +5,8 @@
 > CSS, HTML, JavaScript
 ## Link to my project
 [Flappy Bird](https://quanhoangzg.github.io/the-flappy-bird-game.io/)
+## Link to my video
+(https://youtu.be/k38M8pUB3Zw)
 ## Features
 - CSS
 - HTML
